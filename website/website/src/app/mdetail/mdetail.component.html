@@ -1,0 +1,104 @@
+<div class="detail">
+
+  <div class="main row">
+    <div class="col-md-5">
+      <img src="images/{{movie.mid}}/picture.jpg" class="img-thumbnail">
+    </div>
+    <div class="col-md-7">
+      <h1 class="title">{{movie.name}}</h1>
+
+      <div class="menu" style="float: left">
+        <div class="btn-group">
+          <button type="button" style="background-color: #FFFFFF;border: none;padding-left: 1px" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="icon-stack2" aria-hidden="true" style="font-size: 20px"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">清除评分</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <app-star [currentValue]="movie.score" [mid]="movie.mid"></app-star>
+
+      <div class="row"></div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <h4 class="small-title">平均评分</h4>
+          <p>{{movie.score}} 颗星</p>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-8">
+          <h4 class="small-title">影片类别</h4>
+          <p>{{movie.genres}}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="second row">
+    <div class="col-md-6">
+      <h2 style="margin-top: 0px;">{{movie.descri}}</h2>
+    </div>
+    <div class="col-md-6">
+      <p>{{movie.shoot}} G {{movie.timelong}}</p>
+      <h4 class="small-title">影片语言</h4>
+      <p>{{movie.language}}</p>
+      <h4 class="small-title">影片导演</h4>
+      <p>{{movie.directors}}</p>
+      <h4 class="small-title">影片演员</h4>
+      <p>{{movie.actors}}</p>
+      <h4 class="small-title">影片上映日期</h4>
+      <p>{{movie.issue}}</p>
+    </div>
+
+  </div>
+
+  <h3><span class="icon-pin4" aria-hidden="true" style="font-size: 20px;"></span> 我的标签</h3>
+  <div class="row youtag">
+    <div class="col-md-4">
+      <div class="input-group">
+        <input #tagname type="text" class="form-control" placeholder="Search for...">
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="button" (click)="addMyTag(movie.mid,tagname.value)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+      </span>
+      </div><!-- /input-group -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2" *ngFor="let myTag of myTags" style="margin-bottom: 10px">
+      <div class="btn-group btn-group-sm" role="group" aria-label="...">
+        <button type="button" class="btn btn-default">{{myTag.tag}}</button>
+        <button type="button" class="btn btn-default" (click)="removeMyTag(myTag.mid)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+      </div>
+    </div>
+  </div>
+
+  <h3><span class="glyphicon glyphicon-bullhorn" aria-hidden="true" style="font-size: 20px"></span> 大家的标签</h3>
+  <div class="grid grid-pad">
+    <div class="row">
+      <div class="col-md-2" *ngFor="let movieTag of movieTags" style="margin-bottom: 10px">
+        <div class="btn-group btn-group-sm" role="group" aria-label="...">
+          <!--<button type="button" class="btn btn-default">{{movieTag.sum}}+</button>-->
+          <button type="button" class="btn btn-default">{{movieTag.tag}}</button>
+          <button type="button" class="btn btn-default" (click)="addMyTag(movie.mid,movieTag.tag)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3><span class="glyphicon glyphicon-film" aria-hidden="true" style="font-size: 20px;"></span> 相似推荐</h3>
+  <p class="descri">MovieLens guess movies same with {{movie.name}}</p>
+  <div class="grid grid-pad">
+    <div class="row">
+      <div class="col-lg-2 col-md-2" *ngFor="let sameMovie of sameMovies"><app-thumbnail [movie]="sameMovie"></app-thumbnail></div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,7 @@
+<h3><span class="icon-uniE18F" aria-hidden="true" style="font-size: 20px;"></span> {{title}}</h3>
+<hr/>
+<div class="grid grid-pad">
+  <div class="row">
+    <div class="col-lg-2 col-md-2" *ngFor="let movie of movies" style="margin-bottom: 15px"><app-thumbnail [movie]="movie"></app-thumbnail></div>
+  </div>
+</div>

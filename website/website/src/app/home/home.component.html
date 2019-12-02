@@ -1,0 +1,63 @@
+<div [hidden]="isLoginFirst()">
+  <h3><span class="icon-uniE18E" aria-hidden="true" style="font-size: 20px;"></span> 实时推荐</h3>
+  <p class="descri">MovieLens guess what movies you like <a [routerLink]="['/explore', { type: 'guess' }]" >更多...</a></p>
+  <div class="grid grid-pad">
+    <div class="row">
+      <div class="col-lg-2 col-md-2" *ngFor="let guessMovie of guessMovies"><app-thumbnail [movie]="guessMovie"></app-thumbnail></div>
+    </div>
+  </div>
+
+  <h3><span class="glyphicon glyphicon-heart" aria-hidden="true" style="font-size: 20px;"></span> 离线推荐</h3>
+  <p class="descri">the movies most recently added to MovieLens <a [routerLink]="['/explore', { type: 'wish' }]" >更多...</a></p>
+  <div class="grid grid-pad">
+    <div class="row">
+      <div class="col-lg-2 col-md-2" *ngFor="let wishMovie of wishMovies"><app-thumbnail [movie]="wishMovie"></app-thumbnail></div>
+    </div>
+  </div>
+
+  <h3><span class="icon-whatshot" aria-hidden="true" style="font-size: 20px;"></span> 热门推荐</h3>
+  <p class="descri">MovieLens recommends these movies <a [routerLink]="['/explore', { type: 'hot' }]" >更多...</a></p>
+  <div class="grid grid-pad">
+    <div class="row">
+      <div class="col-lg-2 col-md-2" *ngFor="let hotMovie of hotMovies">
+        <app-thumbnail [movie]="hotMovie"></app-thumbnail>
+      </div>
+    </div>
+  </div>
+
+  <h3><span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size: 20px;"></span> 评分最多</h3>
+  <p class="descri">improve your recommendations by rating as many of these movies as you can <a [routerLink]="['/explore', { type: 'rate' }]" >更多...</a></p>
+  <div class="grid grid-pad">
+    <div class="row">
+      <div class="col-lg-2 col-md-2" *ngFor="let rateMoreMovie of rateMoreMovies"><app-thumbnail [movie]="rateMoreMovie"></app-thumbnail></div>
+    </div>
+  </div>
+
+  <h3><span class="glyphicon glyphicon-facetime-video" aria-hidden="true" style="font-size: 20px;"></span> 最新电影</h3>
+  <p class="descri">movies released in last 90 days <a [routerLink]="['/explore', { type: 'new' }]" >更多...</a></p>
+  <div class="grid grid-pad">
+    <div class="row">
+      <div class="col-lg-2 col-md-2" *ngFor="let newMovie of newMovies"><app-thumbnail [movie]="newMovie"></app-thumbnail></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div [hidden]="!isLoginFirst()" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">选择您所感兴趣的影片类别</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-2 col-md-2" style="margin-bottom: 15px" *ngFor="let item of genres"><input type="checkbox" [(ngModel)]="item.checked"/>{{item.name}}  </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="updateGenres()">保存</button>
+      </div>
+    </div>
+  </div>
+</div>

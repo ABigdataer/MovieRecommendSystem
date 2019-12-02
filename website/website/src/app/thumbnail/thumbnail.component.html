@@ -1,0 +1,60 @@
+<div class="thumbnail1">
+  <div class="top">
+    <div>
+      <div class="row" style="margin: 1px">
+        <div class="title">
+          <a routerLink="/movies/{{movie.mid}}" routerLinkActive="active">{{movie.name}}</a>
+        </div>
+        <div class="action">
+          <span class="icon-uniE18F" aria-hidden="true"></span>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default btn-xs" style="margin-left: 1px;border-color:#FFFFFF">
+              <span class="icon-pin4" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-default btn-xs" style="border-color:#FFFFFF" >
+              <span class="icon-uniE281" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="release row" style="margin: 0px;">
+        <p style="font-size: 12px;margin-bottom: 2px;margin-top: 2px">{{movie.shoot}}年 | {{movie.timelong}}</p>
+      </div>
+    </div>
+    <div (mouseover)="hover()" (mouseleave)="leave()" class="row imgcontext" style="margin: -2px;">
+      <img src="images/{{movie.mid}}/poster.jpg">
+      <div class="detail" [hidden]="!detail">
+        <div class="movie-card-under-image">
+          <p>genres: {{movie.genres}}</p>
+        </div>
+
+        <div class="trailer-play-title">
+          <span class="icon-uniE18E"></span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div class="row" style="margin: 0px;">
+    <div class="menu">
+      <div class="btn-group">
+        <button type="button" style="background-color: #F1F1F1;border: none;padding-left: 1px" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="icon-stack2" aria-hidden="true" style="font-size: 20px"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#">清除评分</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="star">
+      <app-star [currentValue]="movie.score" [mid]="movie.mid"></app-star>
+    </div>
+  </div>
+
+</div>

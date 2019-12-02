@@ -1,0 +1,106 @@
+<header>
+
+  <div [hidden]="isLogin()" class="loginHead row">
+    <div class="col-md-6 col-lg-offset-4">
+      <img src="assets/logo-white.svg" width="180" height="35" alt="MovieLens">
+    </div>
+
+  </div>
+
+  <nav class="navbar navbar-default navbar-fixed-top header-panel" [hidden]="!isLogin()">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+
+      <div  class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="navbar-header">
+            <a class="navbar-brand" routerLink="/home" routerLinkActive="active">
+              <img alt="Brand" src="assets/logo.png">
+            </a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">快速链接 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a routerLink="/home" routerLinkActive="active">首页</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'guess' }]" >实时推荐</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'wish' }]" >离线推荐</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'hot' }]" >热门推荐</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'rate' }]" >评分最多</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'new' }]" >最新电影</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户空间 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a [routerLink]="['/explore', { type: 'myrate' }]" >影片评分</a></li>
+                  <li><a [routerLink]="['/chart']" >图表可视化</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">影片类别 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'action' }]" >动作片</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'adventure' }]" >冒险经历</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'animation' }]" >动画片</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'comedy' }]" >喜剧</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'crime' }]" >犯罪</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'documentary' }]" >纪录片</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'drama' }]" >喜剧文学</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'family' }]" >家庭片</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'fantasy' }]" >魔幻</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'foreign' }]" >外国片</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'history' }]" >历史片</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'horror' }]" >恐怖片</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'music' }]" >音乐片</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'mystery' }]" >悬疑片</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'romance' }]" >爱情片</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'science fiction' }]" >科幻片</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'tv movie' }]" >电视电影</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'thriller' }]" >惊悚片</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'war' }]" >战争片</a></li>
+                  <li><a [routerLink]="['/explore', { type: 'genres',category:'western' }]" >西部片</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" style="width:400px" name="query" (keypress)="enterPress($event)" [(ngModel)]="query">
+              </div>
+              <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true" (click)="search()"></span></button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-bell" aria-hidden="true"></span><span class="caret"></span></a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#" style="color: #d35113;font-weight: 700;">{{login.user.username}}</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a routerLink="/login" routerLinkActive="active" (click)="logout()">退出登录</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </nav>
+
+</header>
+
+
+<div class="container-fluid content">
+  <div  class="row">
+    <div class="col-md-8 col-md-offset-2">
+
+      <router-outlet></router-outlet>
+
+    </div>
+  </div>
+</div>
+
