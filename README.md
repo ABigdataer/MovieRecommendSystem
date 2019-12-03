@@ -27,6 +27,4 @@
 
 &emsp;&emsp;5、混合推荐等......
 
-### 五、项目架构
-
-![image](https://github.com/ABigdataer/MovieRecommendSystem/raw/master/picture/1.bmp)
+### 
