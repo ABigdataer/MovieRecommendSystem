@@ -14,7 +14,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <spring.version>4.3.6.RELEASE</spring.version>
+        <spring.version>5.2.20.RELEASE</spring.version>
         <jedis.version>2.9.0</jedis.version>
         <mongo.version>3.5.0</mongo.version>
         <es.version>5.6.2</es.version>
